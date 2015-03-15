@@ -4,6 +4,9 @@
 package org.sogrey.datefromat;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+
 
 /**
  * @author Administrator
@@ -26,13 +29,13 @@ public class array2split {
 		System.out.println("数组"+answerList.toString());
 		System.out.println("集合"+str.toString());
 		
-		System.out.println("=============");
+		System.out.println("======1======");
 		String answer2 ="你好";
 		String[] answerList2 = answer2.split(",");
 		for (int i = 0; i < answerList2.length; i++) {
 			System.out.println("answerList2["+i+"]=="+answerList2[i]);
 		}
-		System.out.println("=============");
+		System.out.println("======2======");
 		String s ="xxx;yyy";
 //		answerList 按分号分割。分配到每个空白中
 		String[] StrList = s.split(";");
@@ -40,7 +43,7 @@ public class array2split {
 			System.out.println("StrList["+i+"]=="+StrList[i]);
 		}
 		System.out.println("StrList.size=="+StrList.length);
-		System.out.println("=============");
+		System.out.println("======3======");
 		 s =";";
 //		answerList 按分号分割。分配到每个空白中
 		 StrList = s.split(";");
@@ -48,7 +51,7 @@ public class array2split {
 			System.out.println("StrList["+i+"]=="+StrList[i]);
 		}
 		System.out.println("StrList.size=="+StrList.length);
-		System.out.println("=============");
+		System.out.println("======4======");
 		s ="a";
 //		answerList 按分号分割。分配到每个空白中
 		StrList = s.split(";");
@@ -56,7 +59,7 @@ public class array2split {
 			System.out.println("StrList["+i+"]=="+StrList[i]);
 		}
 		System.out.println("StrList.size=="+StrList.length);
-		System.out.println("=============");
+		System.out.println("======5======");
 		s ="1;2;3;4";
 //		answerList 按分号分割。分配到每个空白中
 		StrList = s.split(";");
@@ -64,9 +67,16 @@ public class array2split {
 			System.out.println("StrList["+i+"]=="+StrList[i]);
 		}
 		System.out.println("StrList.size=="+StrList.length);
-		
+		System.out.println("======6======");
 		eg1();
+		System.out.println("======7======");
 		eg2();
+		System.out.println("======8======");
+		String filePath="/ftpfile/20150211174505.mov";
+		Map<String, String> map = getFileName(filePath);//获取文件名,中间名
+        final String remotePath=map.get("middleName");
+        final String fileName=map.get("fileName");
+        System.out.println(remotePath+"\n"+fileName);
 	}
 	
 	private static void eg2() {
@@ -98,4 +108,20 @@ public class array2split {
 		return 0;
 	}
 
+	private static Map<String, String> getFileName(String filePath) {
+//		"filePath":"/ftpfile/20150211174505.mov",
+		Map<String, String> map = new HashMap<String, String>();
+		String fileName = "";
+		String middleName = "";
+//		if(!TextUtils.isEmpty(filePath)){
+			fileName = filePath.substring(filePath.lastIndexOf("/") + 1);
+			middleName=filePath.replace(fileName, "");
+//		}
+			System.out.println(filePath);
+		System.out.println(middleName+"\n"+fileName);
+		map.put("fileName", fileName);
+		map.put("middleName", middleName);
+//		return imageName;
+		return map;
+	}
 }
