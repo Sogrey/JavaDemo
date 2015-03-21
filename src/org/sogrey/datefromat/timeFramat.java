@@ -26,7 +26,7 @@ public class timeFramat {
 				   "yyyy-MM-dd'T'HH:mm:ss.SSSZ",
 				 };
 //		 long data = Long.parseLong("1421113317000");
-		 long data = Long.parseLong("1423647900000");
+		 long data = Long.parseLong("1426755593404");
 				 for (String format : formats) {
 				   SimpleDateFormat sdf = new SimpleDateFormat(format, Locale.US);
 				   System.out.format("%30s %s\n", format, sdf.format(new Date(data)));
