@@ -15,55 +15,18 @@ import java.util.Map;
  */
 
 public class GeoUtils {
-	static String mcode = "70:FE:DF:8B:20:BA:98:2F:21:1B:67:06:F4:3D:62:B5:7A:A5:80:AD;com.baidu.baidulocationdemo";
-	static String key = "pVTtPBAsLq38z4Mm77azNU7G";
+	static String mcode = "31:8F:32:E8:72:53:F1:C0:C8:42:ED:12:AB:12:3D:6E:6D:CB:BD:68;com.jac.jacmobile";
+	static String key = "pdoNIDvWQDsdcaKOb21cqNa69dufG69D";
 
 	public static String getAddress(String location) {
 		// http://api.map.baidu.com/geocoder/v2/?callback=renderReverse&location=34.203034,108.891956&output=json&pois=1&mcode=10:04:EB:20:25:B5:AD:BF:AB:17:C9:01:F7:81:A1:56:B8:A5:4E:5B;cn.com.glendale.jqsb&ak=U41vseWnIrtM1pqDRPYWjOtcW3eR5ruq
-
 		String url = String
 				.format("http://api.map.baidu.com/geocoder/v2/?callback=renderReverse&location=%s&output=json&pois=1&mcode=%s&ak=%s",
 						location, mcode, key);
-		URL myURL = null;
-		URLConnection httpsConn = null;
-		try {
-			myURL = new URL(url);
-		} catch (MalformedURLException e) {
-			e.printStackTrace();
-		}
-		InputStreamReader insr = null;
-		BufferedReader br = null;
-		String data = null;
-		try {
-			httpsConn = (URLConnection) myURL.openConnection();
-			if (httpsConn != null) {
-				insr = new InputStreamReader(httpsConn.getInputStream(),
-						"UTF-8");
-				br = new BufferedReader(insr);
-				while ((data = br.readLine()) != null) {
-					System.out.println(data);
-				}
-				
-			}
-		} catch (IOException e) {
-			e.printStackTrace();
-		} finally {
-			if (insr != null) {
-				try {
-					insr.close();
-				} catch (IOException e) {
-					e.printStackTrace();
-				}
-			}
-			if (br != null) {
-				try {
-					br.close();
-				} catch (IOException e) {
-					e.printStackTrace();
-				}
-			}
-		}
-		return data;
+		
+		String json = loadJSON(url);
+		System.out.println(json);
+		return json;
 	}
 
 	/**
@@ -71,6 +34,8 @@ public class GeoUtils {
 	 * 
 	 * @param address
 	 * @return 经度纬度的map
+	 * @author SunQiChao
+	 * @Date 2015年9月2日
 	 */
 	public static Map<String, Double> getLngAndLat(String address) {
 		Map<String, Double> map = new HashMap<String, Double>();
@@ -96,6 +61,8 @@ public class GeoUtils {
 	 * 
 	 * @param url
 	 * @return
+	 * @author SunQiChao
+	 * @Date 2015年9月2日
 	 */
 	public static String loadJSON(String url) {
 		StringBuilder json = new StringBuilder();
@@ -118,7 +85,7 @@ public class GeoUtils {
 	public static void main(String[] args) throws IOException {
 		//地址获取经纬度
 		getLngAndLat("陕西省西安市雁塔区丈八一路汇鑫IBC附近1米");
-		//{"status":0,"result":{"location":{"lng":108.8919442936714,"lat":34.202934152785697},"precise":0,"confidence":80,"level":"城市"}}
+		//{"status":0,"result":{"location":{"lng":108.8919442936714,"lat":34.202934152785697},"precise":0,"confidence":80,"level":"鍟嗗姟澶у帵"}}
 
 
         //经纬度获取地址
